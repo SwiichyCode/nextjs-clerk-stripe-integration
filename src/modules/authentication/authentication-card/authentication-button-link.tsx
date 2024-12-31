@@ -1,6 +1,5 @@
+import { Button } from '@/core/presentation/components/common/ui/button';
 import Link from 'next/link';
-
-import { Button } from '../../common/ui/button';
 
 type AuthenticationButtonLinkProps = {
   status: 'sign-in' | 'sign-up';

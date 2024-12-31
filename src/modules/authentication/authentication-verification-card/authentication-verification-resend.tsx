@@ -1,6 +1,5 @@
+import { Button } from '@/core/presentation/components/common/ui/button';
 import * as SignUp from '@clerk/elements/sign-up';
-
-import { Button } from '../../common/ui/button';
 
 export const AuthenticationVerificationResend = () => {
   return (

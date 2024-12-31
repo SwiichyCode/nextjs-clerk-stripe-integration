@@ -1,6 +1,6 @@
 'use client';
 
-import { AuthenticationCard } from '@/core/presentation/components/authentication/authentication-card/_index';
+import { AuthenticationCard } from '@/modules/authentication/authentication-card/_index';
 import * as Clerk from '@clerk/elements/common';
 import * as SignIn from '@clerk/elements/sign-in';
 

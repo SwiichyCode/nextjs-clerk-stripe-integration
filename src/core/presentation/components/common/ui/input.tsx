@@ -1,4 +1,4 @@
-import { cn } from '@/config/libs/utils';
+import { cn } from '@/core/presentation/config/libs/utils';
 import * as React from 'react';
 
 const Input = React.forwardRef<HTMLInputElement, React.ComponentProps<'input'>>(

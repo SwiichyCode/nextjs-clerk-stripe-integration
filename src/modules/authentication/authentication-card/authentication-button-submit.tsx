@@ -1,8 +1,7 @@
+import { Icons } from '@/core/presentation/components/common/icons/_index';
+import { Button } from '@/core/presentation/components/common/ui/button';
 import * as Clerk from '@clerk/elements/common';
 import * as SignIn from '@clerk/elements/sign-in';
-
-import { Icons } from '../../common/icons/_index';
-import { Button } from '../../common/ui/button';
 
 export const AuthenticationSubmitButton = ({ isGlobalLoading }: { isGlobalLoading: boolean }) => {
   return (

@@ -1,5 +1,5 @@
-import { CardDescription, CardTitle } from '../../common/ui/card';
-import { CardHeader } from '../../common/ui/card';
+import { CardDescription, CardTitle } from '@/core/presentation/components/common/ui/card';
+import { CardHeader } from '@/core/presentation/components/common/ui/card';
 
 type AuthenticationHeaderProps = {
   status: 'sign-in' | 'sign-up';

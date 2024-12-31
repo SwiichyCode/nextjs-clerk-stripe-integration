@@ -1,7 +1,7 @@
 'use client';
 
-import { AuthenticationCard } from '@/core/presentation/components/authentication/authentication-card/_index';
-import { AuthenticationCardEmailVerification } from '@/core/presentation/components/authentication/authentication-verification-card/_index';
+import { AuthenticationCard } from '@/modules/authentication/authentication-card/_index';
+import { AuthenticationCardEmailVerification } from '@/modules/authentication/authentication-verification-card/_index';
 import * as Clerk from '@clerk/elements/common';
 import * as SignUp from '@clerk/elements/sign-up';
 

@@ -1,8 +1,7 @@
+import { Input } from '@/core/presentation/components/common/ui/input';
+import { Label } from '@/core/presentation/components/common/ui/label';
 import * as Clerk from '@clerk/elements/common';
 import { Fragment } from 'react';
-
-import { Input } from '../../common/ui/input';
-import { Label } from '../../common/ui/label';
 
 export const AuthenticationCredentialSignupForm = () => {
   return (

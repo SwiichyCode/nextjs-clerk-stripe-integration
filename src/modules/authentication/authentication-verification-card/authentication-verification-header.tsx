@@ -1,5 +1,5 @@
-import { CardDescription } from '../../common/ui/card';
-import { CardHeader, CardTitle } from '../../common/ui/card';
+import { CardDescription } from '@/core/presentation/components/common/ui/card';
+import { CardHeader, CardTitle } from '@/core/presentation/components/common/ui/card';
 
 export const AuthenticationVerificationHeader = () => {
   return (

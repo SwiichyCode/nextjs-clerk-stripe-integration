@@ -1,4 +1,4 @@
-import { AuthenticationButton } from '@/core/presentation/components/authentication/authentication-button';
+import { AuthenticationButton } from '@/modules/authentication/authentication-button';
 import { auth } from '@clerk/nextjs/server';
 import Image from 'next/image';
 

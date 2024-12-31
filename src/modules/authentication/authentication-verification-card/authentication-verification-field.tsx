@@ -1,4 +1,4 @@
-import { cn } from '@/config/libs/utils';
+import { cn } from '@/core/presentation/config/libs/utils';
 import * as Clerk from '@clerk/elements/common';
 
 export const AuthenticationVerificationField = () => {
