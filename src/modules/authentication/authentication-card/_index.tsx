@@ -1,6 +1,7 @@
 'use client';
 
-import { Card, CardContent, CardFooter } from '../../common/ui/card';
+import { Card, CardContent, CardFooter } from '@/core/presentation/components/common/ui/card';
+
 import { AuthenticationButtonLink } from './authentication-button-link';
 import { AuthenticationButtonProvider } from './authentication-button-provider';
 import { AuthenticationSubmitButton } from './authentication-button-submit';

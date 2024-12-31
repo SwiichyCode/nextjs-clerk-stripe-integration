@@ -1,4 +1,5 @@
-import { Card, CardContent, CardFooter } from '../../common/ui/card';
+import { Card, CardContent, CardFooter } from '@/core/presentation/components/common/ui/card';
+
 import { AuthenticationVerificationButtonSubmit } from './authentication-verification-button-submit';
 import { AuthenticationVerificationField } from './authentication-verification-field';
 import { AuthenticationVerificationHeader } from './authentication-verification-header';
