@@ -13,31 +13,15 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Cart {
-  id        String     @id @default(cuid())
-  userId    String?
-  items     CartItem[]
-  subtotal  Float
-  total     Float
-  currency  String     @default("EUR")
-  createdAt DateTime   @default(now())
-  updatedAt DateTime   @updatedAt
-  expiresAt DateTime?
-  metadata  Json?      @default("{}")
+model Note {
+  id        String   @id @default(cuid())
+  title     String
+  slug      String   @unique
+  content   String
+  tags      String[]
+  userId    String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
-  // user User? @relation(fields: [userId], references: [id])
-}
-
-model CartItem {
-  id         String   @id @default(cuid())
-  cartId     String
-  productId  String
-  quantity   Int
-  price      Float
-  variantId  String?
-  attributes Json?    @default("{}")
-  addedAt    DateTime @default(now())
-
-  cart Cart @relation(fields: [cartId], references: [id])
-  // product   Product  @relation(fields: [productId], references: [id])
+  @@index([userId])
 }

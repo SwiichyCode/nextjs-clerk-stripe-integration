@@ -1,11 +1,13 @@
-import { CartService } from '@/core/domain/services/cart.service';
-import { LocalCartRepository } from '@/core/infrastructure/repositories/local-cart-repository';
+import { NoteServiceImpl } from '@/core/domain/services/note.service';
+import prisma from '@/core/infrastructure/config/libs/prisma';
+import { PrismaNoteRepository } from '@/core/infrastructure/repositories/prisma-note.repository';
+
+type Token = string | symbol;
+type Constructor<T = any> = new (...args: any[]) => T;
 
 class Container {
   private static instance: Container;
-  private readonly localCartRepository = new LocalCartRepository();
-
-  private readonly cartService = new CartService(this.localCartRepository);
+  private dependencies = new Map<Token, any>();
 
   private constructor() {}
 
@@ -16,9 +18,36 @@ class Container {
     return Container.instance;
   }
 
-  public getCartService(): CartService {
-    return this.cartService;
+  public register<T>(token: Token, instance: T): void {
+    this.dependencies.set(token, instance);
   }
+
+  public resolve<T>(token: Token): T {
+    const dependency = this.dependencies.get(token);
+    if (!dependency) {
+      throw new Error(`Aucune dépendance trouvée pour le token: ${String(token)}`);
+    }
+    return dependency;
+  }
+}
+
+export const TOKENS = {
+  NoteRepository: Symbol('NoteRepository'),
+  NoteService: Symbol('NoteService'),
+  PrismaClient: Symbol('PrismaClient'),
+} as const;
+
+export function initializeDependencies() {
+  const container = Container.getInstance();
+
+  // Infrastructure
+  container.register(TOKENS.PrismaClient, prisma);
+
+  // Repositories
+  container.register(TOKENS.NoteRepository, new PrismaNoteRepository(container.resolve(TOKENS.PrismaClient)));
+
+  // Services
+  container.register(TOKENS.NoteService, new NoteServiceImpl(container.resolve(TOKENS.NoteRepository)));
 }
 
 export const container = Container.getInstance();

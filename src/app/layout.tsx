@@ -1,3 +1,5 @@
+// Initialize dependencies
+import '@/core/infrastructure/config/container/initialize-dependencies';
 import '@/core/presentation/config/globals.css';
 import { ClerkProvider } from '@clerk/nextjs';
 import type { Metadata } from 'next';
