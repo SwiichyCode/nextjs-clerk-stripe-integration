@@ -12,34 +12,35 @@ export class PrismaNoteRepository implements NoteRepository {
         title: note.title,
         slug: note.slug,
         content: note.content,
-        tags: note.tags,
         userId: note.userId,
         createdAt: note.createdAt,
         updatedAt: note.updatedAt,
       },
     });
 
-    return new Note(
-      saved.id,
-      saved.title,
-      saved.slug,
-      saved.content,
-      saved.tags,
-      saved.userId,
-      saved.createdAt,
-      saved.updatedAt,
-    );
+    return new Note(saved.id, saved.title, saved.slug, saved.content, saved.userId, saved.createdAt, saved.updatedAt);
+  }
+
+  async delete(id: string): Promise<void> {
+    await this.prisma.note.delete({
+      where: { id },
+    });
+  }
+
+  async findById(id: string): Promise<Note | null> {
+    const note = await this.prisma.note.findUnique({
+      where: { id },
+    });
+
+    if (!note) return null;
+
+    return note;
   }
 
   async findByUserId(userId: string): Promise<Note[]> {
-    const notes = await this.prisma.note.findMany({
+    return await this.prisma.note.findMany({
       where: { userId },
     });
-
-    return notes.map(
-      note =>
-        new Note(note.id, note.title, note.slug, note.content, note.tags, note.userId, note.createdAt, note.updatedAt),
-    );
   }
 
   async findBySlug(slug: string): Promise<Note | null> {
@@ -49,15 +50,6 @@ export class PrismaNoteRepository implements NoteRepository {
 
     if (!note) return null;
 
-    return new Note(
-      note.id,
-      note.title,
-      note.slug,
-      note.content,
-      note.tags,
-      note.userId,
-      note.createdAt,
-      note.updatedAt,
-    );
+    return new Note(note.id, note.title, note.slug, note.content, note.userId, note.createdAt, note.updatedAt);
   }
 }

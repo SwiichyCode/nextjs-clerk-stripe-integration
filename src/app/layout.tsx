@@ -1,9 +1,11 @@
 // Initialize dependencies
 import '@/core/infrastructure/config/container/initialize-dependencies';
+import { Toaster } from '@/core/presentation/components/common/ui/toaster';
 import '@/core/presentation/config/globals.css';
 import { ClerkProvider } from '@clerk/nextjs';
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
+import { NuqsAdapter } from 'nuqs/adapters/next/app';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -28,7 +30,12 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>{children}</body>
+        <NuqsAdapter>
+          <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+            {children}
+            <Toaster />
+          </body>
+        </NuqsAdapter>
       </html>
     </ClerkProvider>
   );
