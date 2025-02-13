@@ -14,10 +14,12 @@ import { NoteNavigation } from './note-navigation';
 
 type NoteCardProps = {
   userNotes: Note[];
-  note: Note;
+  note: Note | null;
 };
 
 export const NoteCard = ({ userNotes, note }: NoteCardProps) => {
+  console.log(note);
+
   return (
     <Card className="w-[780px] p-6">
       <CardHeader>
@@ -25,12 +27,12 @@ export const NoteCard = ({ userNotes, note }: NoteCardProps) => {
         <CardDescription>Create and manage your personal notes in one place</CardDescription>
         <div className="flex gap-4">
           <NoteDialog />
-          {note && <NoteDelete id={note.id} />}
+          <NoteDelete note={note} />
         </div>
       </CardHeader>
       <CardContent className="flex gap-4">
         {userNotes.length > 0 && <NoteNavigation userNotes={userNotes} />}
-        {note && <NoteDisplay note={note} />}
+        <NoteDisplay note={note} />
       </CardContent>
     </Card>
   );

@@ -1,5 +1,6 @@
 import { Note } from '@/core/domain/entities/note.entity';
 import { NoteRepository } from '@/core/domain/ports/note.repository';
+import { mapPrismaToNote, toNoteDTO } from '@/core/infrastructure/dtos/note.dto';
 import { PrismaClient } from '@prisma/client';
 
 export class PrismaNoteRepository implements NoteRepository {
@@ -7,18 +8,10 @@ export class PrismaNoteRepository implements NoteRepository {
 
   async save(note: Note): Promise<Note> {
     const saved = await this.prisma.note.create({
-      data: {
-        id: note.id,
-        title: note.title,
-        slug: note.slug,
-        content: note.content,
-        userId: note.userId,
-        createdAt: note.createdAt,
-        updatedAt: note.updatedAt,
-      },
+      data: note,
     });
 
-    return new Note(saved.id, saved.title, saved.slug, saved.content, saved.userId, saved.createdAt, saved.updatedAt);
+    return toNoteDTO(mapPrismaToNote(saved));
   }
 
   async delete(id: string): Promise<void> {
@@ -32,15 +25,15 @@ export class PrismaNoteRepository implements NoteRepository {
       where: { id },
     });
 
-    if (!note) return null;
-
-    return note;
+    return note ? toNoteDTO(mapPrismaToNote(note)) : null;
   }
 
   async findByUserId(userId: string): Promise<Note[]> {
-    return await this.prisma.note.findMany({
+    const notes = await this.prisma.note.findMany({
       where: { userId },
     });
+
+    return notes.map(note => toNoteDTO(mapPrismaToNote(note)));
   }
 
   async findBySlug(slug: string): Promise<Note | null> {
@@ -48,8 +41,6 @@ export class PrismaNoteRepository implements NoteRepository {
       where: { slug },
     });
 
-    if (!note) return null;
-
-    return new Note(note.id, note.title, note.slug, note.content, note.userId, note.createdAt, note.updatedAt);
+    return note ? toNoteDTO(mapPrismaToNote(note)) : null;
   }
 }

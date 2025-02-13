@@ -32,8 +32,6 @@ export class NoteServiceImpl implements NoteService {
   }
 
   async getNoteBySlug(slug: string): Promise<Note | null> {
-    const note = await this.noteRepository.findBySlug(slug);
-
-    return note;
+    return await this.noteRepository.findBySlug(slug);
   }
 }
