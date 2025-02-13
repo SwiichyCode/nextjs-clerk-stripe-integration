@@ -1,4 +1,5 @@
 import { AuthenticationButton } from '@/modules/authentication/authentication-button';
+import { CheckoutButton } from '@/modules/payment/checkout-button';
 import Image from 'next/image';
 
 export default async function Home() {
@@ -35,6 +36,7 @@ export default async function Home() {
           >
             Read our docs
           </a>
+          <CheckoutButton />
           <AuthenticationButton />
         </div>
       </main>
