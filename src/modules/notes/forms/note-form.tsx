@@ -25,7 +25,7 @@ export const NoteForm = () => {
 
   function onSubmit(data: z.infer<typeof CreateNoteSchema>) {
     startTransition(async () => {
-      const payload = await createNoteAction(data);
+      await createNoteAction(data);
 
       form.reset();
     });

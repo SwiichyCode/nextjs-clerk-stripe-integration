@@ -8,7 +8,7 @@ type NoteNavigationProps = {
 };
 
 export const NoteNavigation = ({ userNotes }: NoteNavigationProps) => {
-  const [_, setSlug] = useQueryState('slug', {
+  const [, setSlug] = useQueryState('slug', {
     shallow: false,
   });
 

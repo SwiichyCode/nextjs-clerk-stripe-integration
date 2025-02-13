@@ -11,7 +11,7 @@ import * as React from 'react';
 import type { Control } from 'react-hook-form';
 
 export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
-  control?: Control<any>;
+  control?: Control<any>; // eslint-disable-line @typescript-eslint/no-explicit-any
   name: string;
   label?: string;
   description?: React.HTMLAttributes<HTMLParagraphElement>['children'];

@@ -7,7 +7,7 @@ import { revalidatePath } from 'next/cache';
 
 import { DeleteNoteSchema } from '../forms/note-delete.schema';
 
-export const deleteNoteAction = authActionClient.schema(DeleteNoteSchema).action(async ({ parsedInput, ctx }) => {
+export const deleteNoteAction = authActionClient.schema(DeleteNoteSchema).action(async ({ parsedInput }) => {
   const noteService = container.resolve<NoteService>(TOKENS.NoteService);
 
   try {

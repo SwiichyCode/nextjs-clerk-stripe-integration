@@ -3,13 +3,10 @@ import prisma from '@/core/infrastructure/config/libs/prisma';
 import { PrismaNoteRepository } from '@/core/infrastructure/repositories/prisma-note.repository';
 
 type Token = string | symbol;
-type Constructor<T = any> = new (...args: any[]) => T;
 
 class Container {
   private static instance: Container;
-  private dependencies = new Map<Token, any>();
-
-  private constructor() {}
+  private dependencies = new Map<Token, unknown>();
 
   public static getInstance(): Container {
     if (!Container.instance) {
@@ -27,7 +24,7 @@ class Container {
     if (!dependency) {
       throw new Error(`Aucune dépendance trouvée pour le token: ${String(token)}`);
     }
-    return dependency;
+    return dependency as T;
   }
 }
 
