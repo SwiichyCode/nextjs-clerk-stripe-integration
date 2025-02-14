@@ -1,7 +1,10 @@
-# Next.js 15 Enterprise Starter Template
+# Next.js 15 Enterprise Starter Template (🚧 Under Construction 🚧)
 
 A production-ready Next.js 15 template for building scalable SaaS applications, following hexagonal architecture
 principles.
+
+> ⚠️ **Note**: This project is actively under development. Core features are being implemented and documented. Feel
+> free > to star and watch for updates!
 
 ## 🚀 Features
 
