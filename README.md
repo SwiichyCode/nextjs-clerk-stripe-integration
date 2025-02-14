@@ -1,42 +1,62 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with
-[`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Next.js 15 Enterprise Starter Template
 
-## Getting Started
+A production-ready Next.js 15 template for building scalable SaaS applications, following hexagonal architecture
+principles.
 
-First, run the development server:
+## 🚀 Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Framework**: Next.js 15 with App Router
+- **Architecture**: Hexagonal (Ports & Adapters) for maintainable and testable code
+- **Authentication**: Clerk for secure user management
+- **Payments**: Stripe subscription system
+- **Emails**: Resend for reliable email delivery
+- **Monitoring**: Sentry for error tracking and performance monitoring
+- **Testing**: Comprehensive test setup with Jest and Testing Library
+- **Database**: Prisma ORM with PostgreSQL
+- **Styling**: Tailwind CSS with shadcn/ui components
+- **State Management**: Zustand
+- **Type Safety**: TypeScript
+- **Code Quality**: ESLint, Prettier, Husky
+- **CI/CD**: GitHub Actions
+- **Dependencies**: Automated updates with Dependabot
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🎯 Purpose
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+This template aims to provide a robust foundation for building SaaS applications by:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically
-optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Implementing enterprise-grade architecture patterns
+- Following best practices for testing and monitoring
+- Integrating essential SaaS features (auth, payments, emails)
+- Maintaining high code quality standards
+- Ensuring scalability and maintainability
 
-## Learn More
+## 🏗️ Architecture
 
-To learn more about Next.js, take a look at the following resources:
+Built with hexagonal architecture to:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Separate business logic from external concerns
+- Make the codebase easily testable
+- Allow for simple adaptation to changing requirements
+- Facilitate the replacement of external services
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions
-are welcome!
+## 📚 Documentation
 
-## Deploy on Vercel
+Detailed documentation available in the `/docs` directory covering:
 
-The easiest way to deploy your Next.js app is to use the
-[Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme)
-from the creators of Next.js.
+- Project structure
+- Architecture decisions
+- Integration guides
+- Testing strategies
+- Deployment procedures
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for
-more details.
+## 🛠️ Getting Started
+
+[Installation and setup instructions here]
+
+## 🤝 Contributing
+
+Contributions are welcome! Please read our contributing guidelines.
+
+## 📝 License
+
+MIT License
