@@ -1,9 +1,9 @@
-import { SubscriptionRepository } from '@/core/domain/ports/subscription.repository';
+import { CheckoutSessionAdapter } from '@/core/domain/ports/checkout-session.repository';
 import Stripe from 'stripe';
 
 import { STRIPE_CONFIGURATION } from '../config/libs/stripe';
 
-export class StripeAdapter implements SubscriptionRepository {
+export class StripeAdapter implements CheckoutSessionAdapter {
   constructor(
     private readonly stripe: Stripe,
     private readonly config: typeof STRIPE_CONFIGURATION,
@@ -19,6 +19,13 @@ export class StripeAdapter implements SubscriptionRepository {
       customer_email: userEmail,
       metadata: {
         userId,
+      },
+      subscription_data: {
+        // Attach userId to the subscription metadata to track user ownership
+        // This metadata will persist through the subscription lifecycle and webhook events
+        metadata: {
+          userId: userId,
+        },
       },
     });
 

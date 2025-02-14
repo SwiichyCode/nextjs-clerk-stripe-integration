@@ -7,29 +7,29 @@ import { Prisma, PrismaClient } from '@prisma/client';
 export class PrismaNoteRepository implements NoteRepository {
   constructor(private readonly prisma: PrismaClient) {}
 
-  async save(note: Note): Promise<Note> {
+  async save(note: Note) {
     const saved = await this.prisma.note.create({ data: note });
 
     return toNoteDTO(mapPrismaToNote(saved));
   }
 
-  async delete(id: string): Promise<void> {
+  async delete(id: string) {
     await this.prisma.note.delete({ where: { id } });
   }
 
-  async findById(id: string): Promise<Note | null> {
+  async findById(id: string) {
     const note = await this.prisma.note.findUnique({ where: { id } });
 
     return note ? toNoteDTO(mapPrismaToNote(note)) : null;
   }
 
-  async findByUserId(userId: string): Promise<Note[]> {
+  async findByUserId(userId: string) {
     const notes = await this.prisma.note.findMany({ where: { userId } });
 
     return notes.map(note => toNoteDTO(mapPrismaToNote(note)));
   }
 
-  async findBySlug(slug: string): Promise<Note | null> {
+  async findBySlug(slug: string) {
     try {
       const note = await this.prisma.note.findUnique({ where: { slug } });
 

@@ -15,12 +15,42 @@ datasource db {
 
 model Note {
   id        String   @id @default(cuid())
+  userId    String   
   title     String
   slug      String   @unique
   content   String
-  userId    String
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   @@index([userId])
+}
+
+model Subscription {
+  id        String   @id @default(cuid())
+  userId    String   @unique
+  status    SubscriptionStatus
+  subscriptionId String   // Stripe subscription ID
+ 
+
+  currentPeriodStart DateTime
+  currentPeriodEnd   DateTime
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  
+  @@index([userId])
+  @@map("subscriptions")
+}
+
+enum SubscriptionStatus {
+  active
+  canceled
+  incomplete
+  incomplete_expired
+  past_due
+  trialing
+  unpaid
+  paused
 }

@@ -1,28 +1,17 @@
-export interface SubscriptionPlan {
-  id: string;
-  name: string;
-  description: string;
-  price: number;
-  features: string[];
-  stripePriceId: string;
-}
+import { Subscription } from '@/core/domain/entities/subscription.entity';
 
-export interface SubscriptionStatus {
-  isActive: boolean;
-  plan: SubscriptionPlan | null;
-  currentPeriodEnd: Date | null;
-}
-
-// Port primaire
 export interface SubscriptionService {
-  createCheckoutSession(userId: string, userEmail: string, priceId: string): Promise<{ url: string }>;
-  // createBillingPortalSession(userId: string): Promise<{ url: string }>;
-  // getSubscriptionStatus(userId: string): Promise<SubscriptionStatus>;
+  createSubscription(input: CreateSubscriptionInput): Promise<Subscription>;
 }
 
-// Port secondaire
 export interface SubscriptionRepository {
-  createCheckoutSession(userId: string, userEmail: string, priceId: string): Promise<{ url: string }>;
-  // createBillingPortalSession(userId: string): Promise<{ url: string }>;
-  // getSubscriptionStatus(userId: string): Promise<SubscriptionStatus>;
+  save(subscription: Subscription): Promise<Subscription>;
+}
+
+export interface CreateSubscriptionInput {
+  userId: string;
+  status: 'active' | 'incomplete' | 'incomplete_expired' | 'trialing' | 'past_due' | 'canceled' | 'unpaid' | 'paused';
+  subscriptionId: string;
+  currentPeriodStart: Date;
+  currentPeriodEnd: Date;
 }
