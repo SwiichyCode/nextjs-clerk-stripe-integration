@@ -1,6 +1,6 @@
 import { Note } from '@/core/domain/entities/note.entity';
 import { NoteNotFoundException } from '@/core/domain/errors/note.exceptions';
-import { CreateNoteInput, NoteRepository, NoteService } from '@/core/domain/ports/note.repository';
+import type { CreateNoteInput, NoteRepository, NoteService } from '@/core/domain/ports/note.repository';
 import { slugify } from '@/core/utils/string.utils';
 
 export class NoteServiceImpl implements NoteService {

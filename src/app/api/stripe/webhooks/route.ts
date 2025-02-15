@@ -34,8 +34,6 @@ export async function POST(request: Request) {
             currentPeriodStart: new Date(event.data.object.current_period_start * 1000),
             currentPeriodEnd: new Date(event.data.object.current_period_end * 1000),
           });
-
-          throw new Error('Subscription created');
         } catch (error) {
           if (error instanceof Error) monitoringService.captureException(error);
         }

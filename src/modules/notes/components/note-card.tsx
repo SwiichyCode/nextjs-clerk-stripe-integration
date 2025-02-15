@@ -18,8 +18,6 @@ type NoteCardProps = {
 };
 
 export const NoteCard = ({ userNotes, note }: NoteCardProps) => {
-  console.log(note);
-
   return (
     <Card className="w-[780px] p-6">
       <CardHeader>

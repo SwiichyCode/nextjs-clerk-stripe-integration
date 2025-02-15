@@ -1,6 +1,5 @@
 import { Note } from '@/core/domain/entities/note.entity';
 
-// Port primaire (driving port)
 export interface NoteService {
   createNote(input: CreateNoteInput): Promise<Note>;
   deleteNote(id: string): Promise<void>;
@@ -8,7 +7,6 @@ export interface NoteService {
   getNoteBySlug(slug: string): Promise<Note | null>;
 }
 
-// Port secondaire (driven port)
 export interface NoteRepository {
   save(note: Note): Promise<Note>;
   delete(id: string): Promise<void>;
@@ -17,7 +15,6 @@ export interface NoteRepository {
   findBySlug(slug: string): Promise<Note | null>;
 }
 
-// Types
 export interface CreateNoteInput {
   title: string;
   content: string;

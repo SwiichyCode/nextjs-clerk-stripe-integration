@@ -11,6 +11,7 @@
   "dependencies": {
     "@clerk/elements": "^0.22.5",
     "@clerk/nextjs": "^6.9.6",
+    "@evyweb/ioctopus": "^1.2.0",
     "@hookform/resolvers": "^4.0.0",
     "@prisma/client": "^6.1.0",
     "@radix-ui/react-dialog": "^1.1.6",
@@ -29,6 +30,7 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.54.2",
+    "resend": "^4.1.2",
     "stripe": "^17.6.0",
     "tailwind-merge": "^2.6.0",
     "tailwindcss-animate": "^1.0.7",
