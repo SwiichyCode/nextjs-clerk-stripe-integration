@@ -1,5 +1,3 @@
-// Initialize dependencies
-import '@/core/infrastructure/config/container/initialize-dependencies';
 import { Toaster } from '@/core/presentation/components/common/ui/toaster';
 import '@/core/presentation/config/globals.css';
 import { ClerkProvider } from '@clerk/nextjs';

@@ -1,10 +1,8 @@
-import { MonitoringAdapter } from '@/core/domain/ports/monitoring.repository';
-import { SubscriptionService } from '@/core/domain/ports/subscription.repository';
-import { TOKENS, container } from '@/core/infrastructure/config/container';
-import '@/core/infrastructure/config/container/initialize-dependencies';
 import { stripe } from '@/core/infrastructure/config/libs/stripe';
 import { NextResponse } from 'next/server';
 import Stripe from 'stripe';
+
+import { getInjection } from '../../../../../dependency_injection/container';
 
 export async function POST(request: Request) {
   const body = await request.text();
@@ -23,8 +21,8 @@ export async function POST(request: Request) {
   try {
     switch (event.type) {
       case 'customer.subscription.created':
-        const subscriptionService = container.resolve<SubscriptionService>(TOKENS.SubscriptionService);
-        const monitoringService = container.resolve<MonitoringAdapter>(TOKENS.MonitoringService);
+        const subscriptionService = getInjection('SubscriptionService');
+        const monitoringService = getInjection('MonitoringAdapter');
 
         try {
           await subscriptionService.createSubscription({
@@ -35,6 +33,7 @@ export async function POST(request: Request) {
             currentPeriodEnd: new Date(event.data.object.current_period_end * 1000),
           });
         } catch (error) {
+          console.error('Error creating subscription:', error);
           if (error instanceof Error) monitoringService.captureException(error);
         }
     }

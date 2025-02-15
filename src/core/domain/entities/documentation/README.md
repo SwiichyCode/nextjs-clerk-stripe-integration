@@ -25,7 +25,7 @@ export class User {
   constructor(
     public readonly id: string,
     public readonly email: string,
-    private password: string, // Encapsulation
+    private password: string, 
     public readonly createdAt: Date,
   ) {
     if (!this.isValidEmail(email)) {

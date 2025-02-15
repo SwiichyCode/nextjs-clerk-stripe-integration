@@ -1,21 +1,14 @@
 import { CheckoutSessionAdapter } from '@/core/domain/ports/checkout-session.repository';
-import Stripe from 'stripe';
-
-import { STRIPE_CONFIGURATION } from '../config/libs/stripe';
+import { STRIPE_CONFIGURATION, stripe } from '@/core/infrastructure/config/libs/stripe';
 
 export class StripeAdapter implements CheckoutSessionAdapter {
-  constructor(
-    private readonly stripe: Stripe,
-    private readonly config: typeof STRIPE_CONFIGURATION,
-  ) {}
-
   async createCheckoutSession(userId: string, userEmail: string, priceId: string) {
-    const session = await this.stripe.checkout.sessions.create({
+    const session = await stripe.checkout.sessions.create({
       mode: 'subscription',
       payment_method_types: ['card'],
       line_items: [{ price: priceId, quantity: 1 }],
-      success_url: this.config.successUrl,
-      cancel_url: this.config.cancelUrl,
+      success_url: STRIPE_CONFIGURATION.successUrl,
+      cancel_url: STRIPE_CONFIGURATION.cancelUrl,
       customer_email: userEmail,
       metadata: {
         userId,
