@@ -1,29 +1,24 @@
 import { Note } from '@/core/domain/entities/note.entity';
-import { NoteNotFoundException } from '@/core/domain/errors/note.exceptions';
-import type { CreateNoteInput, NoteRepository, NoteService } from '@/core/domain/ports/note.repository';
+import { CreateNoteInput, NoteRepository, NoteService } from '@/core/domain/ports/note.repository';
 import { slugify } from '@/core/utils/string.utils';
 
 export class NoteServiceImpl implements NoteService {
   constructor(private readonly noteRepository: NoteRepository) {}
 
   async createNote(input: CreateNoteInput) {
-    const note = new Note(
-      crypto.randomUUID(),
-      input.title,
-      slugify(input.title),
-      input.content,
-      input.userId,
-      new Date(),
-    );
+    const newNote: Note = {
+      id: crypto.randomUUID(),
+      title: input.title,
+      slug: slugify(input.title),
+      content: input.content,
+      userId: input.userId,
+      createdAt: new Date(),
+    };
 
-    return this.noteRepository.save(note);
+    return this.noteRepository.save(newNote);
   }
 
   async deleteNote(id: string) {
-    const note = await this.noteRepository.findById(id);
-
-    if (!note) throw new NoteNotFoundException(id);
-
     return this.noteRepository.delete(id);
   }
 

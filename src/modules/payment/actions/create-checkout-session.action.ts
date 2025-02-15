@@ -9,7 +9,7 @@ import { createCheckoutSessionSchema } from '../forms/create-checkout-session.sc
 export const createCheckoutSessionAction = authActionClient
   .schema(createCheckoutSessionSchema)
   .action(async ({ parsedInput, ctx }) => {
-    const checkoutSessionService = getInjection('CheckoutSessionAdapter');
+    const checkoutSessionService = getInjection('CheckoutSessionService');
 
     try {
       const { url } = await checkoutSessionService.createCheckoutSession(

@@ -1,15 +1,13 @@
-export class Subscription {
-  constructor(
-    public readonly id: string,
-    public readonly userId: string,
-    public readonly status: SubscriptionStatus,
-    public readonly subscriptionId: string,
-    public readonly currentPeriodStart: Date,
-    public readonly currentPeriodEnd: Date,
-    public readonly createdAt: Date,
-    public readonly updatedAt: Date,
-  ) {}
-}
+export type Subscription = {
+  id: string;
+  userId: string;
+  status: SubscriptionStatus;
+  subscriptionId: string;
+  currentPeriodStart: Date;
+  currentPeriodEnd: Date;
+  createdAt: Date;
+  updatedAt: Date;
+};
 
 export type SubscriptionStatus =
   | 'active'

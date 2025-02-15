@@ -7,7 +7,7 @@ import { DI_SYMBOLS } from '../types';
 export function createNoteModule() {
   const noteModule = createModule();
 
-  noteModule.bind(DI_SYMBOLS.NoteRepository).toClass(PrismaNoteRepository);
+  noteModule.bind(DI_SYMBOLS.NoteRepository).toClass(PrismaNoteRepository, [DI_SYMBOLS.SentryCrashReporterRepository]);
   noteModule.bind(DI_SYMBOLS.NoteService).toClass(NoteServiceImpl, [DI_SYMBOLS.NoteRepository]);
 
   return noteModule;

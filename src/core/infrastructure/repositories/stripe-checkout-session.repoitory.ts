@@ -1,7 +1,7 @@
-import { CheckoutSessionAdapter } from '@/core/domain/ports/checkout-session.repository';
+import { CheckoutSessionRepository } from '@/core/domain/ports/checkout-session.repository';
 import { STRIPE_CONFIGURATION, stripe } from '@/core/infrastructure/config/libs/stripe';
 
-export class StripeAdapter implements CheckoutSessionAdapter {
+export class StripeCheckoutSessionRepository implements CheckoutSessionRepository {
   async createCheckoutSession(userId: string, userEmail: string, priceId: string) {
     const session = await stripe.checkout.sessions.create({
       mode: 'subscription',

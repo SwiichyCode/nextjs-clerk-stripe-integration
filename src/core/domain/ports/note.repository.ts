@@ -1,4 +1,4 @@
-import { Note } from '@/core/domain/entities/note.entity';
+import type { Note } from '@/core/domain/entities/note.entity';
 
 export interface NoteService {
   createNote(input: CreateNoteInput): Promise<Note>;

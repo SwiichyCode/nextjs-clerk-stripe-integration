@@ -7,7 +7,9 @@ import { DI_SYMBOLS } from '../types';
 export function createSubscriptionModule() {
   const subscriptionModule = createModule();
 
-  subscriptionModule.bind(DI_SYMBOLS.SubscriptionRepository).toClass(PrismaSubscriptionRepository);
+  subscriptionModule
+    .bind(DI_SYMBOLS.SubscriptionRepository)
+    .toClass(PrismaSubscriptionRepository, [DI_SYMBOLS.SentryCrashReporterRepository]);
   subscriptionModule
     .bind(DI_SYMBOLS.SubscriptionService)
     .toClass(SubscriptionServiceImpl, [DI_SYMBOLS.SubscriptionRepository]);

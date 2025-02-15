@@ -1,9 +1,9 @@
-import { CheckoutSessionAdapter, CheckoutSessionService } from '@/core/domain/ports/checkout-session.repository';
+import { CheckoutSessionRepository } from '@/core/domain/ports/checkout-session.repository';
 
-export class CheckoutSessionImpl implements CheckoutSessionService {
-  constructor(private readonly checkoutSessionAdapter: CheckoutSessionAdapter) {}
+export class CheckoutSessionService implements CheckoutSessionService {
+  constructor(private readonly checkoutSessionRepository: CheckoutSessionRepository) {}
 
   async createCheckoutSession(userId: string, userEmail: string, priceId: string) {
-    return this.checkoutSessionAdapter.createCheckoutSession(userId, userEmail, priceId);
+    return this.checkoutSessionRepository.createCheckoutSession(userId, userEmail, priceId);
   }
 }

@@ -9,17 +9,17 @@ export class SubscriptionServiceImpl implements SubscriptionService {
   constructor(private readonly subscriptionRepository: SubscriptionRepository) {}
 
   async createSubscription(input: CreateSubscriptionInput) {
-    const subscription = new Subscription(
-      crypto.randomUUID(),
-      input.userId,
-      input.status,
-      input.subscriptionId,
-      input.currentPeriodStart,
-      input.currentPeriodEnd,
-      new Date(),
-      new Date(),
-    );
+    const newSubscription: Subscription = {
+      id: crypto.randomUUID(),
+      userId: input.userId,
+      status: input.status,
+      subscriptionId: input.subscriptionId,
+      currentPeriodStart: input.currentPeriodStart,
+      currentPeriodEnd: input.currentPeriodEnd,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    };
 
-    return this.subscriptionRepository.save(subscription);
+    return this.subscriptionRepository.save(newSubscription);
   }
 }

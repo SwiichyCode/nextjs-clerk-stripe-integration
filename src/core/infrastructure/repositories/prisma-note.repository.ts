@@ -1,41 +1,54 @@
 import { Note } from '@/core/domain/entities/note.entity';
-import type { NoteRepository } from '@/core/domain/ports/note.repository';
+import { NoteRepository } from '@/core/domain/ports/note.repository';
+import { CrashReporterService } from '@/core/domain/services/crash-reporter.service';
 import prisma from '@/core/infrastructure/config/libs/prisma';
-import { mapPrismaToNote, toNoteDTO } from '@/core/infrastructure/dtos/note.dto';
-import { DatabaseConnectionError } from '@/core/infrastructure/errors/repository.errors';
-import { Prisma } from '@prisma/client';
 
 export class PrismaNoteRepository implements NoteRepository {
-  async save(note: Note) {
-    const saved = await prisma.note.create({ data: note });
+  constructor(private readonly crashReporterService: CrashReporterService) {}
 
-    return toNoteDTO(mapPrismaToNote(saved));
+  async save(note: Note): Promise<Note> {
+    try {
+      return await prisma.note.create({ data: note });
+    } catch (error) {
+      this.crashReporterService.report(error);
+      throw error;
+    }
   }
 
-  async delete(id: string) {
-    await prisma.note.delete({ where: { id } });
+  async delete(id: string): Promise<void> {
+    try {
+      await prisma.note.delete({ where: { id } });
+    } catch (error) {
+      this.crashReporterService.report(error);
+      throw error;
+    }
   }
 
-  async findById(id: string) {
-    const note = await prisma.note.findUnique({ where: { id } });
-
-    return note ? toNoteDTO(mapPrismaToNote(note)) : null;
+  async findById(id: string): Promise<Note | null> {
+    try {
+      const note = await prisma.note.findUnique({ where: { id } });
+      return note ? note : null;
+    } catch (error) {
+      this.crashReporterService.report(error);
+      throw error;
+    }
   }
 
-  async findByUserId(userId: string) {
-    const notes = await prisma.note.findMany({ where: { userId } });
-
-    return notes.map(note => toNoteDTO(mapPrismaToNote(note)));
+  async findByUserId(userId: string): Promise<Note[]> {
+    try {
+      return await prisma.note.findMany({ where: { userId } });
+    } catch (error) {
+      this.crashReporterService.report(error);
+      throw error;
+    }
   }
 
-  async findBySlug(slug: string) {
+  async findBySlug(slug: string): Promise<Note | null> {
     try {
       const note = await prisma.note.findUnique({ where: { slug } });
-
-      return note ? toNoteDTO(mapPrismaToNote(note)) : null;
+      return note ? note : null;
     } catch (error) {
-      if (error instanceof Prisma.PrismaClientKnownRequestError) throw new DatabaseConnectionError(error.message);
-
+      this.crashReporterService.report(error);
       throw error;
     }
   }

@@ -22,7 +22,7 @@ export async function POST(request: Request) {
     switch (event.type) {
       case 'customer.subscription.created':
         const subscriptionService = getInjection('SubscriptionService');
-        const monitoringService = getInjection('MonitoringAdapter');
+        const crashReporterService = getInjection('CrashReporterService');
 
         try {
           await subscriptionService.createSubscription({
@@ -33,8 +33,8 @@ export async function POST(request: Request) {
             currentPeriodEnd: new Date(event.data.object.current_period_end * 1000),
           });
         } catch (error) {
-          console.error('Error creating subscription:', error);
-          if (error instanceof Error) monitoringService.captureException(error);
+          crashReporterService.report(error);
+          throw error;
         }
     }
   } catch (error) {
