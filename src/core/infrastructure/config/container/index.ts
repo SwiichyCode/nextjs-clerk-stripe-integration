@@ -52,7 +52,7 @@ export function initializeDependencies() {
   container.register(TOKENS.PrismaClient, prisma);
 
   // Repositories
-  container.register(TOKENS.NoteRepository, new PrismaNoteRepository(container.resolve(TOKENS.PrismaClient)));
+  container.register(TOKENS.NoteRepository, new PrismaNoteRepository());
   container.register(
     TOKENS.SubscriptionRepository,
     new PrismaSubscriptionRepository(container.resolve(TOKENS.PrismaClient)),
