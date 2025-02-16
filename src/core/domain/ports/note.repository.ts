@@ -4,7 +4,7 @@ export interface NoteService {
   createNote(input: CreateNoteInput): Promise<Note>;
   deleteNote(id: string): Promise<void>;
   getUserNotes(userId: string): Promise<Note[]>;
-  getNoteBySlug(slug: string): Promise<Note | null>;
+  getNoteBySlug(slug: string | null): Promise<Note | null>;
 }
 
 export interface NoteRepository {
@@ -12,7 +12,7 @@ export interface NoteRepository {
   delete(id: string): Promise<void>;
   findById(id: string): Promise<Note | null>;
   findByUserId(userId: string): Promise<Note[]>;
-  findBySlug(slug: string): Promise<Note | null>;
+  findBySlug(slug: string | null): Promise<Note | null>;
 }
 
 export interface CreateNoteInput {

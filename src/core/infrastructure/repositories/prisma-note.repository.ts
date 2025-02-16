@@ -43,10 +43,11 @@ export class PrismaNoteRepository implements NoteRepository {
     }
   }
 
-  async findBySlug(slug: string): Promise<Note | null> {
+  async findBySlug(slug: string | null): Promise<Note | null> {
     try {
-      const note = await prisma.note.findUnique({ where: { slug } });
-      return note ? note : null;
+      if (!slug) return null;
+
+      return await prisma.note.findUnique({ where: { slug } });
     } catch (error) {
       this.crashReporterService.report(error);
       throw error;

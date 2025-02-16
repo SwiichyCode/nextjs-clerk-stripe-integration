@@ -20,7 +20,7 @@ export default async function NotesPage({ searchParams }: PageProps) {
 
   const noteService = getInjection('NoteService');
   const userNotes = await noteService.getUserNotes(session.userId!);
-  const noteBySlug = await noteService.getNoteBySlug(slug ?? userNotes[0]?.slug);
+  const noteBySlug = await noteService.getNoteBySlug(slug);
 
   return (
     <div className="flex h-screen w-full items-center justify-center">

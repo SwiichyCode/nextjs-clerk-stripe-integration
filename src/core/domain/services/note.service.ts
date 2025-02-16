@@ -1,8 +1,8 @@
 import { Note } from '@/core/domain/entities/note.entity';
-import { CreateNoteInput, NoteRepository, NoteService } from '@/core/domain/ports/note.repository';
+import { CreateNoteInput, NoteRepository } from '@/core/domain/ports/note.repository';
 import { slugify } from '@/core/domain/utils/string.utils';
 
-export class NoteServiceImpl implements NoteService {
+export class NoteService {
   constructor(private readonly noteRepository: NoteRepository) {}
 
   async createNote(input: CreateNoteInput) {
@@ -26,7 +26,7 @@ export class NoteServiceImpl implements NoteService {
     return this.noteRepository.findByUserId(userId);
   }
 
-  async getNoteBySlug(slug: string) {
+  async getNoteBySlug(slug: string | null) {
     return await this.noteRepository.findBySlug(slug);
   }
 }

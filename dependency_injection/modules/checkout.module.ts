@@ -1,5 +1,5 @@
 import { CheckoutSessionService } from '@/core/domain/services/checkout-session.service';
-import { StripeCheckoutSessionRepository } from '@/core/infrastructure/repositories/stripe-checkout-session.repoitory';
+import { StripeCheckoutSessionRepository } from '@/core/infrastructure/repositories/stripe-checkout-session.repository';
 import { createModule } from '@evyweb/ioctopus';
 
 import { DI_SYMBOLS } from '../types';

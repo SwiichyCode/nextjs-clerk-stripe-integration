@@ -1,11 +1,7 @@
 import { Subscription } from '@/core/domain/entities/subscription.entity';
-import {
-  CreateSubscriptionInput,
-  SubscriptionRepository,
-  SubscriptionService,
-} from '@/core/domain/ports/subscription.repository';
+import { CreateSubscriptionInput, SubscriptionRepository } from '@/core/domain/ports/subscription.repository';
 
-export class SubscriptionServiceImpl implements SubscriptionService {
+export class SubscriptionService {
   constructor(private readonly subscriptionRepository: SubscriptionRepository) {}
 
   async createSubscription(input: CreateSubscriptionInput) {
