@@ -1,6 +1,6 @@
 import { Note } from '@/core/domain/entities/note.entity';
 import { CreateNoteInput, NoteRepository, NoteService } from '@/core/domain/ports/note.repository';
-import { slugify } from '@/core/utils/string.utils';
+import { slugify } from '@/core/domain/utils/string.utils';
 
 export class NoteServiceImpl implements NoteService {
   constructor(private readonly noteRepository: NoteRepository) {}

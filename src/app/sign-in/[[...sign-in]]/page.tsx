@@ -1,7 +1,7 @@
 'use client';
 
-import { AuthenticationCard } from '@/modules/authentication/authentication-card/_index';
-import { AuthenticationPasswordStrategy } from '@/modules/authentication/authentication-password-strategy/_index';
+import { AuthenticationCard } from '@/core/presentation/modules/authentication/authentication-card/_index';
+import { AuthenticationPasswordStrategy } from '@/core/presentation/modules/authentication/authentication-password-strategy/_index';
 import * as Clerk from '@clerk/elements/common';
 import * as SignIn from '@clerk/elements/sign-in';
 

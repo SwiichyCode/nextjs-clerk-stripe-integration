@@ -1,5 +1,5 @@
 import { loadSearchParams } from '@/core/presentation/config/libs/nuqs';
-import { NoteCard } from '@/modules/notes/components/note-card';
+import { NoteCard } from '@/core/presentation/modules/notes/components/note-card';
 import { auth } from '@clerk/nextjs/server';
 import type { SearchParams } from 'nuqs/server';
 

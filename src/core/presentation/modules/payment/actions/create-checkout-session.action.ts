@@ -1,9 +1,9 @@
 'use server';
 
+import { getInjection } from '#di/container';
 import { authActionClient } from '@/core/presentation/config/libs/next-safe-action';
 import { redirect } from 'next/navigation';
 
-import { getInjection } from '../../../../dependency_injection/container';
 import { createCheckoutSessionSchema } from '../forms/create-checkout-session.schema';
 
 export const createCheckoutSessionAction = authActionClient
